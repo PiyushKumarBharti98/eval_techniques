@@ -2,6 +2,11 @@ from collections import Counter
 import math
 
 
+def sentence_process(sen: str) -> list[str]:
+    """docstring"""
+    return list(sen.split())
+
+
 def get_ngram(sen: list[str], n: int):
     """docstring"""
     ngrams = []
@@ -51,9 +56,13 @@ def final_bleu(cand: list[str], ref: list[str], n: int = 4, weights=None) -> flo
     return bp * math.exp(weighted_log_sum)
 
 
+# test
 if __name__ == "__main__":
-    ref: list[str] = list("the cat is on the mat".split())
-    cand: list[str] = list("the cat sat on the mat".split())
+    REF = "the cat is on the mat"
+    CAND = "the cat sat on the mat"
+
+    ref = sentence_process(REF)
+    cand = sentence_process(CAND)
 
     bleu1 = final_bleu(ref, cand, n=4)
 
